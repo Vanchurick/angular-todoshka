@@ -1,0 +1,83 @@
+<div class="container">
+  <h1 class="container__title">Let`s do it!</h1>
+
+  <form action="POST" class="container__form form">
+    <input
+      type="text"
+      [(ngModel)]="toDoTitle"
+      name="title"
+      class="form__input input"
+      placeholder="Enter your task"
+    />
+
+    <div *ngIf="!editingMode; else saveChanges" class="form__buttons">
+      <button (click)="saveToDo()" class="button">Save</button>
+    </div>
+  </form>
+
+  <div class="search">
+    <input
+      type="text"
+      (input)="searchToDo($event)"
+      placeholder="Search"
+      class="search__input input"
+    />
+  </div>
+
+  <div class="filters">
+    <input
+      type="radio"
+      value="all"
+      name="filter"
+      (change)="onFilterChange($event)"
+      id="all"
+      checked
+      class="filters__radio"
+    />
+    <label for="all" class="filters__label">all</label>
+    <input
+      type="radio"
+      value="completed"
+      name="filter"
+      (change)="onFilterChange($event)"
+      id="completed"
+      class="filters__radio"
+    />
+    <label for="completed" class="filters__label">Completed</label>
+    <input
+      type="radio"
+      value="uncompleted"
+      name="filter"
+      (change)="onFilterChange($event)"
+      id="uncompleted"
+      class="filters__radio"
+    />
+    <label for="uncompleted" class="filters__label">uncompleted</label>
+  </div>
+
+  <ul class="container__list">
+    <li *ngFor="let toDoItem of toDos" class="container__todo todo">
+      <div class="todo__info" [ngClass]="{ checked: toDoItem.completed }">
+        <p>{{ toDoItem.title }}</p>
+        <input type="checkbox" [(ngModel)]="toDoItem.completed" />
+      </div>
+      <div class="todo__buttons">
+        <button (click)="deleteToDo(toDoItem.id)" class="button">Delete</button>
+        <button
+          (click)="startToEdit(toDoItem.id, toDoItem.title)"
+          class="button"
+        >
+          Edit
+        </button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #saveChanges>
+  <div class="form__buttons">
+    <button (click)="saveChangesOfEditing()" class="button">
+      Save changes
+    </button>
+  </div>
+</ng-template>

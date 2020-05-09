@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <h1 class="container__title">Let`s do it!</h1>
 
   <form action="POST" class="container__form form">
@@ -80,4 +80,22 @@
       Save changes
     </button>
   </div>
-</ng-template>
+</ng-template> -->
+
+<div class="container">
+  <h1 class="container__title">Let`s do it!</h1>
+
+  <ul class="container__list">
+    <li *ngFor="let toDoItem of toDos" class="container__todo todo">
+      <p>{{ toDoItem.title }}</p>
+    </li>
+  </ul>
+</div>
+
+<!-- <ng-template #saveChanges>
+  <div class="form__buttons">
+    <button (click)="saveChangesOfEditing()" class="button">
+      Save changes
+    </button>
+  </div>
+</ng-template> -->

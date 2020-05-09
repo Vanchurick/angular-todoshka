@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ToDosService } from './services/toDos/to-dos.service';
+
 
 
 @Component({
@@ -8,13 +8,10 @@ import { ToDosService } from './services/toDos/to-dos.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'todo';
 
-  constructor(private toDoService: ToDosService) { }
+
+  constructor() { }
 
   ngOnInit() {
-
-    this.toDoService.requestToDo();
-
   }
 }

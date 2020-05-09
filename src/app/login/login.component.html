@@ -6,6 +6,7 @@
       class="input"
       [(ngModel)]="login"
       name="login"
+      class="form__input"
     />
     <input
       type="text"
@@ -13,8 +14,11 @@
       class="input"
       [(ngModel)]="password"
       name="password"
+      class="form__input"
     />
-    <button (click)="loginUser()">Log In</button>
-    <button (click)="signUpUser()">Sign Up</button>
+    <div class="form__buttons">
+      <button (click)="loginUser()" class="form__button">Log In</button>
+      <button (click)="signUpUser()" class="form__button">Sign Up</button>
+    </div>
   </form>
 </div>

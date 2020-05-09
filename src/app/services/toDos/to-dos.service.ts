@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 
-import { generate } from 'shortid';
+
 
 import toDoInterface from '../../interfaces/toDo'
 
@@ -13,10 +13,12 @@ export class ToDosService {
 
   constructor(private http: HttpClient) { }
 
+  toDoList: [] = [];
 
 
-  requestToDo() {
-    return this.http.get<toDoInterface[]>('https://jsonplaceholder.typicode.com/todos')
+
+  saveToDoList(list) {
+    this.toDoList = list;
   }
 
   addNewToDo(arr: toDoInterface[], title: string): toDoInterface[] {

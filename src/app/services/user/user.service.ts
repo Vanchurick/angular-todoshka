@@ -29,4 +29,8 @@ export class UserService {
     this.loginUser = login;
     this.userId = id;
   }
+
+  getUserData() {
+    return { login: this.loginUser, id: this.userId }
+  }
 }

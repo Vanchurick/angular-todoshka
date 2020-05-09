@@ -83,19 +83,53 @@
 </ng-template> -->
 
 <div class="container">
-  <h1 class="container__title">Let`s do it!</h1>
+  <app-header></app-header>
+
+  <h1 class="title">Let`s do it!</h1>
+
+  <form action="POST" class="form">
+    <input
+      type="text"
+      name="title"
+      class="form__taskTitle"
+      placeholder="Enter your task"
+      [(ngModel)]="title"
+    />
+
+    <div class="form__datepicker">
+      <input
+        [matDatepicker]="myDatepicker"
+        [(ngModel)]="deadline"
+        name="date"
+        placeholder="Deadline"
+        class="form__date"
+      />
+      <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+    </div>
+
+    <div *ngIf="!editingMode; else saveChanges" class="form__buttons">
+      <button class="form__button" (click)="addTask()">Save</button>
+    </div>
+  </form>
 
   <ul class="container__list">
-    <li *ngFor="let toDoItem of toDos" class="container__todo todo">
+    <li
+      *ngFor="let toDoItem of toDos"
+      class="container__todo todo"
+      id="toDoItem.id"
+    >
       <p>{{ toDoItem.title }}</p>
+      <p>{{ toDoItem.deadLine }}</p>
+      <input type="checkbox" [(ngModel)]="toDoItem.completed" name="complete" />
     </li>
   </ul>
 </div>
 
-<!-- <ng-template #saveChanges>
+<ng-template #saveChanges>
   <div class="form__buttons">
-    <button (click)="saveChangesOfEditing()" class="button">
+    <button class="button">
       Save changes
     </button>
   </div>
-</ng-template> -->
+</ng-template>

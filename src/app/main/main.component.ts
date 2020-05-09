@@ -15,19 +15,32 @@ export class MainComponent {
 
 
   toDos = this.toDoService.toDoList;
+  editingMode: boolean = false;
+  deadline: string;
+  title: string;
+
+
+  addTask() {
+
+    if (!this.title || !this.deadline) {
+      alert("Empty fileds!")
+      return;
+    }
+
+    const newTask = {
+      title: this.title,
+      deadLine: Date.parse(this.deadline)
+    }
+
+    this.toDoService.addNewToDo(newTask);
+
+    this.title = "";
+    this.deadline = "";
+  }
 
 
 
-  // saveToDo() {
 
-  //   if (!this.toDoTitle.length) {
-  //     alert('Enter the title of the task')
-  //     return
-  //   }
-
-  //   this.toDos = this.toDoService.addNewToDo(this.toDos, this.toDoTitle);
-  //   this.toDoTitle = ""
-  // }
 
 
   // deleteToDo(id) {

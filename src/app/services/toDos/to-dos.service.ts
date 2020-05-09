@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { UserService } from '../user/user.service'
+import shortid from 'shortid';
 
 
 
@@ -13,26 +15,27 @@ export class ToDosService {
 
   constructor(private http: HttpClient) { }
 
-  toDoList: [] = [];
+  toDoList = JSON.parse(localStorage.getItem('toDos')) || [];
 
 
 
   saveToDoList(list) {
     this.toDoList = list;
+    this.saveToLocalStorage(this.toDoList);
+
   }
 
-  addNewToDo(arr: toDoInterface[], title: string): toDoInterface[] {
-    const newToDo = {
-      title,
-      completed: false,
-      id: Math.ceil(Math.random() * 100000),
-      userId: 1505
-    }
-
-    arr.unshift(newToDo);
-
-    return arr;
+  addNewToDo(task) {
+    this.toDoList.push({ ...task, completed: false, id: shortid.generate() })
+    this.saveToLocalStorage(this.toDoList);
+    console.log(this.toDoList)
   }
+
+  saveToLocalStorage(list) {
+    localStorage.setItem('toDos', JSON.stringify(list))
+  }
+
+
 
   removeToDo(arr: toDoInterface[], id: number) {
     return arr.filter(el => el.id !== id);

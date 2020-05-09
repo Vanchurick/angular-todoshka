@@ -1,96 +1,69 @@
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  height: 100%;
+}
 
-  &__title {
-    margin: 30px auto;
-  }
-
-  &__list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-  }
+.title {
+  text-align: center;
 }
 
 .form {
   width: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  &__input {
-    width: 80%;
-  }
-}
-
-.input {
-  width: 80%;
-  margin: 20px auto;
-  height: 30px;
-  border: 1px solid #000;
-  border-radius: 15px;
-  padding: 5px;
-  text-align: center;
-}
-
-.button {
-  width: 100px;
-  height: 40px;
-  border: 2px solid #000;
-  border-radius: 15px;
-  text-transform: uppercase;
-  font-weight: bold;
+  height: 200px;
+  margin: 0 auto;
   background-color: #fff;
-  margin: 20px;
-  transition: 0.5s;
-  cursor: pointer;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
 
-  &:hover {
-    background-color: #000;
-    color: #fff;
-  }
-}
-
-.search {
-  &__input {
-    width: 200px;
-  }
-}
-
-.filters {
-  height: 50px;
-
-  &__radio {
-    display: none;
-  }
-
-  &__label {
-    text-transform: uppercase;
-    margin: 10px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-}
-
-input[type="radio"]:checked + label {
-  color: blue;
-}
-
-.todo {
-  width: 25%;
-  border: 1px solid black;
-  padding: 1% 0;
-
-  &__info {
+  &__datepicker {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: center;
   }
-}
 
-.checked {
-  text-decoration: line-through;
+  &__date {
+    height: 20px;
+    border: none;
+    box-shadow: 0 0 10px 2px rgb(252, 186, 6);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 16px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 10px 2px rgb(6, 22, 252);
+    }
+  }
+
+  &__taskTitle {
+    width: 80%;
+    height: 30px;
+    border: none;
+    box-shadow: 0 0 10px 2px rgb(252, 186, 6);
+    border-radius: 15px;
+    text-align: center;
+    font-size: 24px;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 10px 2px rgb(6, 22, 252);
+    }
+  }
+
+  &__button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: rgb(252, 186, 6);
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 900;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(6, 22, 252);
+    }
+  }
 }

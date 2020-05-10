@@ -113,17 +113,31 @@
     </div>
   </form>
 
-  <ul class="container__list">
-    <li
-      *ngFor="let toDoItem of toDos"
-      class="container__todo todo"
-      id="toDoItem.id"
-    >
-      <p>{{ toDoItem.title }}</p>
-      <p>{{ toDoItem.deadLine }}</p>
-      <input type="checkbox" [(ngModel)]="toDoItem.completed" name="complete" />
-    </li>
-  </ul>
+  <div class="container__todos todos">
+    <div class="todos__filters">
+      <p>Filters</p>
+    </div>
+    <ul class="todos__list">
+      <li *ngFor="let toDoItem of toDos" class="todos__item" id="toDoItem.id">
+        <div class="todos__titlebox">
+          <p class="todos__title">{{ toDoItem.title }}</p>
+          <input
+            type="checkbox"
+            [(ngModel)]="toDoItem.completed"
+            name="complete"
+          />
+        </div>
+
+        <div class="todos__manage">
+          <p class="todos__date">{{ toDoItem.deadLine | date }}</p>
+          <div class="todos__buttons">
+            <button class="todos__button">Edit</button>
+            <button class="todos__button">Delete</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
 </div>
 
 <ng-template #saveChanges>

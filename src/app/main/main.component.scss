@@ -67,3 +67,49 @@
     }
   }
 }
+
+.todos {
+  display: flex;
+  justify-content: center;
+
+  &__filters {
+    width: 30%;
+  }
+
+  &__list {
+    list-style: none;
+    width: 70%;
+  }
+
+  &__item {
+    width: 50%;
+    margin: 5px 0;
+    border: 2px solid gray;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &__titlebox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(6, 22, 252);
+    padding: 2px 5px;
+  }
+
+  &__title {
+    margin: 0;
+    color: #fff;
+  }
+
+  &__manage {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 5px;
+  }
+
+  &__date {
+    margin: 0;
+  }
+}

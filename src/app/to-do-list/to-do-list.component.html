@@ -8,6 +8,7 @@
     <p (click)="toDoItem.completed = !toDoItem.completed">
       {{ toDoItem.title }}
     </p>
+    <p>{{ toDoItem.deadline | date }}</p>
     <button (click)="startToEdit(toDoItem.id)">
       Edit
     </button>

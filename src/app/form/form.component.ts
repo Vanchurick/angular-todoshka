@@ -39,4 +39,10 @@ export class FormComponent implements OnInit {
 
 
 
+  save() {
+    this.toDoService.saveAllChanges()
+  }
+
+
+
 }

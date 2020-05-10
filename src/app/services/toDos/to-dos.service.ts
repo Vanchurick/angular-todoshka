@@ -11,15 +11,17 @@ import shortid from 'shortid';
 
 export class ToDosService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { this.createDatesFilters() }
 
   toDoList = JSON.parse(localStorage.getItem('toDos')) || [];
   copyToDoList = JSON.parse(localStorage.getItem('toDos')) || [];
-
+  dateFilters = [];
 
   saveToDoList(list) {
     this.toDoList = list;
     this.copyToDoList = this.toDoList;
+
+    this.createDatesFilters()
     this.saveToLocalStorage(this.toDoList);
 
   }
@@ -50,6 +52,7 @@ export class ToDosService {
 
     this.toDoList.push(newTask)
     this.copyToDoList = this.toDoList;
+    this.createDatesFilters()
     this.saveToLocalStorage(this.toDoList);
   }
 
@@ -59,6 +62,7 @@ export class ToDosService {
   removeToDo(id) {
     this.toDoList = this.toDoList.filter(toDo => toDo.id !== id);
     this.copyToDoList = this.toDoList;
+    this.createDatesFilters()
     this.saveToLocalStorage(this.toDoList);
   }
 
@@ -73,6 +77,7 @@ export class ToDosService {
     })
 
     this.copyToDoList = this.toDoList;
+    this.createDatesFilters()
     this.saveToLocalStorage(this.toDoList);
   }
 
@@ -87,20 +92,55 @@ export class ToDosService {
       }
     });
 
+  }
+
+  filterToDo(value) {
+
+    const params = {
+      completed: true,
+      uncompleted: false,
+    }
+
+    if (value === "all") {
+      this.toDoList = this.copyToDoList;
+      return;
+    }
+
+    this.toDoList = this.copyToDoList.filter(el => el.completed === params[value])
+  }
+
+
+  saveAllChanges() {
+    this.saveToLocalStorage(this.toDoList);
+  }
+
+
+  createDatesFilters() {
+
+    const allDates = this.toDoList.map(toDo => {
+
+      const date = new Date(toDo.deadline);
+
+      return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+    });
+
+
+    const filters = [];
+
+    for (let str of allDates) {
+      if (!filters.includes(str)) {
+        filters.push(str);
+      }
+    }
+
+    this.dateFilters = [...filters]
+
 
   }
 
-  // filterToDo(arr: toDoInterface[], param: string) {
-  //   const params = {
-  //     completed: true,
-  //     uncompleted: false,
-  //   }
 
-  //   if (param === "all") {
-  //     return arr;
-  //   }
-
-  //   return arr.filter(el => el.completed === params[param])
-  // }
+  getDateFilters() {
+    return this.dateFilters;
+  }
 
 }

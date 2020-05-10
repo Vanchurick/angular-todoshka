@@ -18,8 +18,6 @@ export class UserService {
     return this.http.post('http://localhost:5050/api/auth', body);
   }
 
-
-
   login(login: string, password: string) {
     const body = { login, password };
     return this.http.post('http://localhost:5050/api/login', body);
@@ -28,6 +26,7 @@ export class UserService {
   saveUserData(login: string, id: string) {
     this.loginUser = login;
     this.userId = id;
+    localStorage.setItem('login', "true")
   }
 
   getUserData() {

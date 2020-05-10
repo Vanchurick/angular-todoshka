@@ -1,0 +1,16 @@
+<ul>
+  <li
+    *ngFor="let toDoItem of toDoService.getToDos()"
+    [id]="toDoItem.id"
+    class="task"
+  >
+    <input type="checkbox" [(ngModel)]="toDoItem.completed" />
+    <p (click)="toDoItem.completed = !toDoItem.completed">
+      {{ toDoItem.title }}
+    </p>
+    <button (click)="startToEdit(toDoItem.id)">
+      Edit
+    </button>
+    <button (click)="deleteTask(toDoItem.id)">Delete</button>
+  </li>
+</ul>

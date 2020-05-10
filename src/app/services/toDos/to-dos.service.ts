@@ -5,8 +5,6 @@ import shortid from 'shortid';
 
 
 
-import toDoInterface from '../../interfaces/toDo'
-
 @Injectable({
   providedIn: 'root'
 })
@@ -16,19 +14,14 @@ export class ToDosService {
   constructor(private http: HttpClient) { }
 
   toDoList = JSON.parse(localStorage.getItem('toDos')) || [];
-
+  copyToDoList = JSON.parse(localStorage.getItem('toDos')) || [];
 
 
   saveToDoList(list) {
     this.toDoList = list;
+    this.copyToDoList = this.toDoList;
     this.saveToLocalStorage(this.toDoList);
 
-  }
-
-  addNewToDo(task) {
-    this.toDoList.push({ ...task, completed: false, id: shortid.generate() })
-    this.saveToLocalStorage(this.toDoList);
-    console.log(this.toDoList)
   }
 
   saveToLocalStorage(list) {
@@ -37,23 +30,55 @@ export class ToDosService {
 
 
 
-  removeToDo(arr: toDoInterface[], id: number) {
-    return arr.filter(el => el.id !== id);
+  getToDos() {
+    return this.toDoList;
   }
 
-  editTodo(arr: toDoInterface[], id: number, title: string) {
-    return arr.map(el => {
+  getTask(id) {
+    return this.toDoList.find(toDo => toDo.id === id)
+  }
+
+
+  addNewToDo(title, deadline) {
+    const newTask = {
+      title,
+      deadline: Date.parse(deadline),
+      completed: false,
+      id: shortid.generate(),
+      createdDate: Date.now(),
+    }
+
+    this.toDoList.push(newTask)
+    this.copyToDoList = this.toDoList;
+    this.saveToLocalStorage(this.toDoList);
+  }
+
+
+
+
+  removeToDo(id) {
+    this.toDoList = this.toDoList.filter(toDo => toDo.id !== id);
+    this.copyToDoList = this.toDoList;
+    this.saveToLocalStorage(this.toDoList);
+  }
+
+  editTodo(id, title, deadline) {
+    this.toDoList.map(el => {
       if (el.id === id) {
         el.title = title;
+        el.deadline = Date.parse(deadline);
         return el;
       }
       return el;
     })
+
+    this.copyToDoList = this.toDoList;
+    this.saveToLocalStorage(this.toDoList);
   }
 
-  searchToDo(arr: toDoInterface[], search: string) {
+  searchToDo(search) {
 
-    return arr.filter(el => {
+    this.toDoList = this.copyToDoList.filter(el => {
       let elemTitle = el.title.split(' ').join().toLowerCase();
       let searchRequest = search.split(' ').join().toLowerCase();
 
@@ -65,17 +90,17 @@ export class ToDosService {
 
   }
 
-  filterToDo(arr: toDoInterface[], param: string) {
-    const params = {
-      completed: true,
-      uncompleted: false,
-    }
+  // filterToDo(arr: toDoInterface[], param: string) {
+  //   const params = {
+  //     completed: true,
+  //     uncompleted: false,
+  //   }
 
-    if (param === "all") {
-      return arr;
-    }
+  //   if (param === "all") {
+  //     return arr;
+  //   }
 
-    return arr.filter(el => el.completed === params[param])
-  }
+  //   return arr.filter(el => el.completed === params[param])
+  // }
 
 }

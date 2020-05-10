@@ -1,0 +1,11 @@
+<form>
+  <input type="text" [(ngModel)]="taskTitle" name="title" />
+  <input
+    [matDatepicker]="myDatepicker"
+    [(ngModel)]="taskDeadline"
+    name="deadline"
+  />
+  <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+  <mat-datepicker #myDatepicker></mat-datepicker>
+  <button (click)="saveChanges()">Save Changes</button>
+</form>

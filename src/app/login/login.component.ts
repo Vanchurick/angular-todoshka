@@ -3,25 +3,7 @@ import { UserService } from '../services/user/user.service';
 import { Router } from '@angular/router';
 import { ToDosService } from '../services/toDos/to-dos.service';
 import { errorHandler } from '../helpers/errorHandler';
-
-
-interface loginResponse {
-  status: string,
-  userInfo: {
-    id: string,
-    login: string
-    toDoList: []
-  }
-}
-
-interface signUpResponse {
-  status: string,
-  newUser: {
-    id: string,
-    login: string,
-  }
-}
-
+import { loginResponse, signUpResponse } from '../interfaces/toDo'
 
 @Component({
   selector: 'app-login',
@@ -53,6 +35,7 @@ export class LoginComponent {
 
         this.serverError = true;
         errorHandler(msg);
+        localStorage.setItem('login', "false")
 
       }, complete: this.onComplete.bind(this)
     })

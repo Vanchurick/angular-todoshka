@@ -12,6 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { HeaderComponent } from './header/header.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormComponent } from './form/form.component';
+import { ToDoListComponent } from './to-do-list/to-do-list.component';
+import { EditFormComponent } from './edit-form/edit-form.component';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +23,11 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MainComponent,
     LoginComponent,
     NotfoundComponent,
-    HeaderComponent
+    HeaderComponent,
+    FormComponent,
+    ToDoListComponent,
+    EditFormComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

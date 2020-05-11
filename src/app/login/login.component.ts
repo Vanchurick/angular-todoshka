@@ -15,8 +15,8 @@ export class LoginComponent {
 
   constructor(private userService: UserService, private router: Router, private toDoService: ToDosService) { }
 
-  login: string = 'Ivan';
-  password: string = '12345';
+  login: string;
+  password: string;
   serverError: boolean;
 
 

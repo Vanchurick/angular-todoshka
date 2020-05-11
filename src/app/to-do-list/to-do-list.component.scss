@@ -1,4 +1,69 @@
-.task {
-  display: flex;
-  align-items: center;
+.tasks {
+  padding: 0 10px;
+  border-right: 1px solid rgb(6, 22, 252);
+
+  &__title {
+    text-align: center;
+    border-bottom: 1px solid rgb(252, 186, 6);
+  }
+  &__item {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__title {
+    margin: 0;
+    cursor: pointer;
+  }
+
+  &__date {
+    margin: 0 20px;
+    width: 100px;
+  }
+
+  &__buttons {
+    margin-left: auto;
+  }
+
+  &__button {
+    padding: 2px 5px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(252, 186, 6);
+    color: #fff;
+    font-weight: 900;
+    transition: 0.5s;
+    cursor: pointer;
+
+    &:hover {
+      background-color: rgb(6, 22, 252);
+    }
+  }
+}
+
+.completed {
+  width: 10px;
+  height: 10px;
+  background-color: green;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.uncompleted {
+  width: 10px;
+  height: 10px;
+  background-color: yellow;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.deadline {
+  color: red;
+  font-weight: bold;
 }

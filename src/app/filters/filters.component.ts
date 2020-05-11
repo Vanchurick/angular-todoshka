@@ -18,6 +18,16 @@ export class FiltersComponent implements OnInit {
   }
 
   onChangeDate(date) {
+
+    if (typeof date === 'object') {
+
+      const { target: { value } } = date;
+
+      this.toDoService.filterToDoByDate(value);
+      return;
+    }
+
+
     this.toDoService.filterToDoByDate(date)
   }
 

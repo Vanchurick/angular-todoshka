@@ -1,5 +1,31 @@
 .header {
-  height: 30px;
   background-color: rgb(255, 166, 0);
-  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 30px;
+
+  &__logo-text {
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 36px;
+    color: #fff;
+    margin: 0;
+  }
+
+  &__logout {
+    display: flex;
+    align-items: center;
+  }
+
+  &__login {
+    margin: 0 10px;
+    color: #fff;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    font-size: 20px;
+  }
+
+  &__svg {
+    fill: #fff;
+    cursor: pointer;
+  }
 }

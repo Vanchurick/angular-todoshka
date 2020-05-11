@@ -1,11 +1,30 @@
-<form>
-  <input type="text" [(ngModel)]="taskTitle" name="title" />
-  <input
-    [matDatepicker]="myDatepicker"
-    [(ngModel)]="taskDeadline"
-    name="deadline"
-  />
-  <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-  <mat-datepicker #myDatepicker></mat-datepicker>
-  <button (click)="saveChanges()">Save Changes</button>
+<form class="form">
+  <h2 class="form__title">Edit Task</h2>
+  <div class="form__inputs">
+    <div class="form__input-container">
+      <input
+        type="text"
+        [(ngModel)]="taskTitle"
+        name="title"
+        placeholder="Task title..."
+        class="form__input"
+      />
+    </div>
+    <div class="form__input-container">
+      <div>
+        <input
+          [matDatepicker]="myDatepicker"
+          [(ngModel)]="taskDeadline"
+          name="deadline"
+          placeholder="Deadline..."
+          class="form__input"
+        />
+
+        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+        <mat-datepicker #myDatepicker></mat-datepicker>
+      </div>
+    </div>
+  </div>
+
+  <button (click)="saveChanges()" class="form__button">Save Changes</button>
 </form>

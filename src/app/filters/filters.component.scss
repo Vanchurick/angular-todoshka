@@ -1,0 +1,49 @@
+.filters {
+  border-right: 1px solid rgb(6, 22, 252);
+  padding: 0 10px;
+  &__title {
+    text-align: center;
+    border-bottom: 1px solid rgb(252, 186, 6);
+  }
+
+  &__complete {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+  &__complete-input {
+    display: none;
+  }
+
+  &__complete-input:checked + &__complete-label {
+    color: rgb(6, 22, 252);
+    font-weight: bold;
+  }
+
+  &__complete-label {
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  &__dates {
+    margin-top: 20px;
+  }
+
+  &__list {
+    list-style: none;
+    text-align: center;
+  }
+
+  &__input-date {
+    display: none;
+  }
+
+  &__date {
+    cursor: pointer;
+  }
+
+  &__input-date:checked + &__date {
+    color: rgb(6, 22, 252);
+    font-weight: bold;
+  }
+}

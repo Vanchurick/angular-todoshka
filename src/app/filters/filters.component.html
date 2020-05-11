@@ -1,36 +1,66 @@
-<div>
-  <div>
+<div class="filters">
+  <h2 class="filters__title">Filters</h2>
+
+  <div class="filters__complete">
     <input
       type="radio"
       value="all"
       (change)="onChangeComplete($event)"
       name="complete"
+      id="all"
       checked
+      class="filters__complete-input"
     />
+    <label for="all" class="filters__complete-label">all</label>
     <input
       type="radio"
       value="completed"
       (change)="onChangeComplete($event)"
       name="complete"
+      id="completed"
+      class="filters__complete-input"
     />
+    <label for="completed" class="filters__complete-label">completed</label>
     <input
       type="radio"
       value="uncompleted"
       (change)="onChangeComplete($event)"
       name="complete"
+      id="uncompleted"
+      class="filters__complete-input"
     />
-  </div>
 
-  <ul>
-    <li *ngFor="let filter of toDoService.getDateFilters(); let i = index">
-      <input
-        type="radio"
-        name="filterdates"
-        [value]="filter"
-        [id]="i"
-        (change)="onChangeDate(filter)"
-      />
-      <label [for]="i">{{ filter | date }}</label>
-    </li>
-  </ul>
+    <label for="uncompleted" class="filters__complete-label">uncompleted</label>
+  </div>
+  <div class="filters__dates">
+    <h2 class="filters__title">Dates</h2>
+    <ul class="filters__list">
+      <li class="filters__item">
+        <input
+          type="radio"
+          name="filterdates"
+          value="all"
+          id="i"
+          (change)="onChangeDate($event)"
+          class="filters__input-date"
+          checked
+        />
+        <label for="i" class="filters__date">All</label>
+      </li>
+      <li
+        *ngFor="let filter of toDoService.getDateFilters(); let i = index"
+        class="filters__item"
+      >
+        <input
+          type="radio"
+          name="filterdates"
+          [value]="filter"
+          [id]="i"
+          (change)="onChangeDate(filter)"
+          class="filters__input-date"
+        />
+        <label [for]="i" class="filters__date">{{ filter | date }}</label>
+      </li>
+    </ul>
+  </div>
 </div>

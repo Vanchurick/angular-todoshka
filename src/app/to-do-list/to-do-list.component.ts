@@ -24,4 +24,18 @@ export class ToDoListComponent implements OnInit {
     this.idTaskForEdit.emit(id)
   }
 
+
+  compareDates(deadline) {
+    const toDay = new Date(Date.now());
+    const date = new Date(deadline);
+
+
+    if (toDay.getDate() === date.getDate() && toDay.getMonth() === date.getMonth() && toDay.getFullYear() === date.getFullYear()) {
+      return true
+    }
+
+    return false;
+
+  }
+
 }

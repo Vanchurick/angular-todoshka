@@ -1,17 +1,38 @@
-<ul>
+<ul class="tasks">
+  <h2 class="tasks__title">Tasks</h2>
   <li
     *ngFor="let toDoItem of toDoService.getToDos()"
     [id]="toDoItem.id"
-    class="task"
+    class="tasks__item"
   >
-    <input type="checkbox" [(ngModel)]="toDoItem.completed" />
-    <p (click)="toDoItem.completed = !toDoItem.completed">
+    <input
+      type="checkbox"
+      [(ngModel)]="toDoItem.completed"
+      class="tasks__input"
+    />
+    <div
+      [ngClass]="{
+        completed: toDoItem.completed,
+        uncompleted: !toDoItem.completed
+      }"
+    ></div>
+    <p (click)="toDoItem.completed = !toDoItem.completed" class="tasks__title">
       {{ toDoItem.title }}
     </p>
-    <p>{{ toDoItem.deadline | date }}</p>
-    <button (click)="startToEdit(toDoItem.id)">
-      Edit
-    </button>
-    <button (click)="deleteTask(toDoItem.id)">Delete</button>
+
+    <div class="tasks__buttons">
+      <button (click)="startToEdit(toDoItem.id)" class="tasks__button">
+        Edit
+      </button>
+      <button (click)="deleteTask(toDoItem.id)" class="tasks__button">
+        Delete
+      </button>
+    </div>
+    <p
+      class="tasks__date"
+      [ngClass]="{ deadline: compareDates(toDoItem.deadline) }"
+    >
+      {{ toDoItem.deadline | date }}
+    </p>
   </li>
 </ul>

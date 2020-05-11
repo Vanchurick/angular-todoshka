@@ -1,12 +1,18 @@
 <div class="container">
+  <app-header></app-header>
   <app-edit-form
     *ngIf="editMode"
     [id]="idTaskForEditing"
     (editingMode)="deactivEditMode($event)"
   ></app-edit-form>
   <app-form *ngIf="!editMode"></app-form>
-  <app-search></app-search>
-  <app-save-button></app-save-button>
-  <app-filters></app-filters>
-  <app-to-do-list (idTaskForEdit)="activeEditMode($event)"></app-to-do-list>
+  <div class="search-container"><app-search></app-search></div>
+  <div class="tasks-container">
+    <app-filters class="filters"></app-filters>
+    <app-to-do-list
+      (idTaskForEdit)="activeEditMode($event)"
+      class="list"
+    ></app-to-do-list>
+    <app-save-button class="save-button"></app-save-button>
+  </div>
 </div>

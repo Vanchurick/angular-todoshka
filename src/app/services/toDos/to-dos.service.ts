@@ -106,6 +106,12 @@ export class ToDosService {
   }
 
   filterToDoByDate(date) {
+
+    if (date === "all") {
+      this.toDoList = this.copyToDoList;
+      return;
+    }
+
     this.toDoList = this.copyToDoList.filter(el => new Date(el.deadline).toISOString() === new Date(date).toISOString())
   }
 

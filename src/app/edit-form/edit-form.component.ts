@@ -30,6 +30,12 @@ export class EditFormComponent implements OnInit {
 
 
   saveChanges() {
+
+    if (!this.taskTitle || !this.taskDeadline) {
+      alert('Empty fileds!');
+      return;
+    }
+
     this.toDoService.editTodo(this.id, this.taskTitle, this.taskDeadline)
 
     this.editingMode.emit(false)

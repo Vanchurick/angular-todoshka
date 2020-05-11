@@ -26,10 +26,14 @@ export class UserService {
   saveUserData(login: string, id: string) {
     this.loginUser = login;
     this.userId = id;
-    localStorage.setItem('login', "true")
+    localStorage.setItem('login', "true");
   }
 
   getUserData() {
     return { login: this.loginUser, id: this.userId }
+  }
+
+  logOut() {
+    localStorage.setItem('login', "false");
   }
 }

@@ -17,6 +17,7 @@ import { ToDoListComponent } from './to-do-list/to-do-list.component';
 import { EditFormComponent } from './edit-form/edit-form.component';
 import { SearchComponent } from './search/search.component';
 import { FiltersComponent } from './filters/filters.component';
+import { SaveButtonComponent } from './save-button/save-button.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { FiltersComponent } from './filters/filters.component';
     ToDoListComponent,
     EditFormComponent,
     SearchComponent,
-    FiltersComponent
+    FiltersComponent,
+    SaveButtonComponent
   ],
   imports: [
     BrowserModule,

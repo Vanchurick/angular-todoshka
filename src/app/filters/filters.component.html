@@ -3,27 +3,34 @@
     <input
       type="radio"
       value="all"
-      (change)="onChange($event)"
+      (change)="onChangeComplete($event)"
       name="complete"
       checked
     />
     <input
       type="radio"
       value="completed"
-      (change)="onChange($event)"
+      (change)="onChangeComplete($event)"
       name="complete"
     />
     <input
       type="radio"
       value="uncompleted"
-      (change)="onChange($event)"
+      (change)="onChangeComplete($event)"
       name="complete"
     />
   </div>
 
   <ul>
-    <li *ngFor="let filter of toDoService.getDateFilters()">
-      <p>{{ filter }}</p>
+    <li *ngFor="let filter of toDoService.getDateFilters(); let i = index">
+      <input
+        type="radio"
+        name="filterdates"
+        [value]="filter"
+        [id]="i"
+        (change)="onChangeDate(filter)"
+      />
+      <label [for]="i">{{ filter | date }}</label>
     </li>
   </ul>
 </div>

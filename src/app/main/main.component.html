@@ -6,6 +6,7 @@
   ></app-edit-form>
   <app-form *ngIf="!editMode"></app-form>
   <app-search></app-search>
+  <app-save-button></app-save-button>
   <app-filters></app-filters>
   <app-to-do-list (idTaskForEdit)="activeEditMode($event)"></app-to-do-list>
 </div>

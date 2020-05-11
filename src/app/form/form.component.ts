@@ -36,13 +36,4 @@ export class FormComponent implements OnInit {
     this.taskDeadline = ""
 
   }
-
-
-
-  save() {
-    this.toDoService.saveAllChanges()
-  }
-
-
-
 }

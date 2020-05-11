@@ -13,10 +13,12 @@ export class FiltersComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onChange({ target: { value } }) {
-    this.toDoService.filterToDo(value)
+  onChangeComplete({ target: { value } }) {
+    this.toDoService.filterToDoByComplete(value)
   }
 
-
+  onChangeDate(date) {
+    this.toDoService.filterToDoByDate(date)
+  }
 
 }

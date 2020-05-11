@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { UserService } from '../user/user.service'
 import shortid from 'shortid';
+import { errorHandler } from '../../helpers/errorHandler';
+
 
 
 
@@ -11,7 +13,7 @@ import shortid from 'shortid';
 
 export class ToDosService {
 
-  constructor(private http: HttpClient) { this.createDatesFilters() }
+  constructor(private http: HttpClient, private userService: UserService) { this.createDatesFilters() }
 
   toDoList = JSON.parse(localStorage.getItem('toDos')) || [];
   copyToDoList = JSON.parse(localStorage.getItem('toDos')) || [];
@@ -23,14 +25,11 @@ export class ToDosService {
 
     this.createDatesFilters()
     this.saveToLocalStorage(this.toDoList);
-
   }
 
   saveToLocalStorage(list) {
     localStorage.setItem('toDos', JSON.stringify(list))
   }
-
-
 
   getToDos() {
     return this.toDoList;
@@ -47,7 +46,7 @@ export class ToDosService {
       deadline: Date.parse(deadline),
       completed: false,
       id: shortid.generate(),
-      createdDate: Date.now(),
+      creationDate: Date.now(),
     }
 
     this.toDoList.push(newTask)
@@ -55,9 +54,6 @@ export class ToDosService {
     this.createDatesFilters()
     this.saveToLocalStorage(this.toDoList);
   }
-
-
-
 
   removeToDo(id) {
     this.toDoList = this.toDoList.filter(toDo => toDo.id !== id);
@@ -82,7 +78,6 @@ export class ToDosService {
   }
 
   searchToDo(search) {
-
     this.toDoList = this.copyToDoList.filter(el => {
       let elemTitle = el.title.split(' ').join().toLowerCase();
       let searchRequest = search.split(' ').join().toLowerCase();
@@ -91,11 +86,9 @@ export class ToDosService {
         return el;
       }
     });
-
   }
 
-  filterToDo(value) {
-
+  filterToDoByComplete(value) {
     const params = {
       completed: true,
       uncompleted: false,
@@ -106,36 +99,59 @@ export class ToDosService {
       return;
     }
 
+    console.log(this.toDoList);
+    console.log(this.copyToDoList)
+
     this.toDoList = this.copyToDoList.filter(el => el.completed === params[value])
   }
 
-
-  saveAllChanges() {
-    this.saveToLocalStorage(this.toDoList);
+  filterToDoByDate(date) {
+    this.toDoList = this.copyToDoList.filter(el => new Date(el.deadline).toISOString() === new Date(date).toISOString())
   }
 
+  saveAllChanges() {
 
-  createDatesFilters() {
+    const { login, id } = this.userService.getUserData();
 
-    const allDates = this.toDoList.map(toDo => {
+    const body = { id, login, tasks: [...this.toDoList] }
 
-      const date = new Date(toDo.deadline);
+    console.log(body)
 
-      return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
+    this.http.post('http://localhost:5050/api/add', body).subscribe({
+      next: (response) => {
+
+        console.log(response);
+      },
+      error: (msg) => {
+
+        errorHandler(msg);
+
+      }, complete: () => {
+        this.copyToDoList = this.toDoList;
+        this.saveToLocalStorage(this.toDoList);
+      }
     });
 
+  }
 
-    const filters = [];
+  createDatesFilters() {
+    const allDates = this.toDoList.map(toDo => {
+
+      const date = new Date(toDo.deadline).toISOString();
+      return date
+    });
+
+    const uniqDates = [];
 
     for (let str of allDates) {
-      if (!filters.includes(str)) {
-        filters.push(str);
+      if (!uniqDates.includes(str)) {
+        uniqDates.push(str);
       }
     }
 
-    this.dateFilters = [...filters]
+    const formatedDates = uniqDates.map(date => Date.parse(date));
 
-
+    this.dateFilters = [...formatedDates]
   }
 
 

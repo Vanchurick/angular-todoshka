@@ -11,7 +11,7 @@ branches:
   - master
 
 deploy:
-provider: heroku
-app: just-to-do
-api_key:
-secure: "bc6bbdd8-1ea9-4bb5-a5b6-4ca6c627f5a7"
+  provider: heroku
+  app: just-to-do
+  api_key:
+    secure: "bc6bbdd8-1ea9-4bb5-a5b6-4ca6c627f5a7"

@@ -34,6 +34,7 @@ export class UserService {
   }
 
   logOut() {
+    localStorage.setItem('toDos', JSON.stringify([]));
     localStorage.setItem('login', "false");
   }
 }

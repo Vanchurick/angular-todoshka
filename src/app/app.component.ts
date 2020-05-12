@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
 
   constructor() { }
 
+  title: string = "todo"
+
   ngOnInit() {
   }
 }

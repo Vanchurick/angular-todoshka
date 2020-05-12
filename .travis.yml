@@ -1,17 +1,14 @@
 language: node_js
 node_js:
-- "10"
-
+- '10'
 before_install:
 - npm install -g @angular/cli
 install: npm install
-
 branches:
   only:
   - master
-
 deploy:
   provider: heroku
   app: just-to-do
   api_key:
-    secure: "bc6bbdd8-1ea9-4bb5-a5b6-4ca6c627f5a7"
+    secure: F+7S4mghdzvhGCM2+WWzV1A42NAHGIdgOE506tM+7Q6p7jv21e9bmxFPFnYmQ7qzbPX76KnPRc8OeQKoUBYICtdJePdCEa+Qt8EJVZ3Up7NK3giSkyoRy6/dNS5PS++gTrEijMh37hfSQeQ1ktNXfXb8nAp8+smUAF0HL2eInk953Kbj43B7u1hg8EMmp+FaotKuZ4WZEJGY17fEFSmgRDEyIkcA67/SSEWv2sPsIIGL0N+rcpYshGfu6mw0PhsKPhPuLwVdRhfWaVWhwl4H1F1EZwEa+UWynvEVHieVdwb8kyr2Me2GToBGKp62bA3x9nrQXEXN1IOg8qj+yq0RY+TLWwXAiM/0DD0Ia0OyOOljT40s00pSEZvugnnFdGt1uHL5NQaPJH88IfnOND0dj4kMb9M45Z6u3JBPYn0oe9kMJHwY4QMqDNr4+iw9sABuIiEkueVkDpcEJJtNDSC658v0ilAP02RNXoG8E7/xFmMt17sG/6I02dV7Vv7vVRRiCKAGBF9rW4jGpUXvqluvp8IqupcTTf/DBoPVqHMARR6AkQBMIaEfT/YM6pYeW6P+NXrZpoLZFRG5kxMYFLUAWbgsh92+5yCimoIZqJBNOtbD8v49KCkiuce+BZCG1eNLosUCoY29+EkeRj+GqKwH88yUJLrgikAfNlxg7Ec0IgE=

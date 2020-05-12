@@ -8,4 +8,12 @@ app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname + "/dist/todo/index.html"));
 });
 
+app.get("/login", function (req, res) {
+  res.sendFile(path.join(__dirname + "/dist/todo/index.html"));
+});
+
+app.get("/main", function (req, res) {
+  res.sendFile(path.join(__dirname + "/dist/todo/index.html"));
+});
+
 app.listen(process.env.PORT || 8080);

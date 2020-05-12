@@ -15,12 +15,12 @@ export class UserService {
 
   auth(login: string, password: string) {
     const body = { login, password };
-    return this.http.post('http://localhost:5050/api/auth', body);
+    return this.http.post('https://sheltered-harbor-59593.herokuapp.com/api/auth', body);
   }
 
   login(login: string, password: string) {
     const body = { login, password };
-    return this.http.post('http://localhost:5050/api/login', body);
+    return this.http.post('https://sheltered-harbor-59593.herokuapp.com/api/login', body);
   }
 
   saveUserData(login: string, id: string) {

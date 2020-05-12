@@ -123,11 +123,8 @@ export class ToDosService {
 
     console.log(body)
 
-    this.http.post('http://localhost:5050/api/add', body).subscribe({
-      next: (response) => {
-
-        console.log(response);
-      },
+    this.http.post('https://sheltered-harbor-59593.herokuapp.com/api/add', body).subscribe({
+      next: (response) => { },
       error: (msg) => {
 
         errorHandler(msg);
@@ -135,6 +132,7 @@ export class ToDosService {
       }, complete: () => {
         this.copyToDoList = this.toDoList;
         this.saveToLocalStorage(this.toDoList);
+        alert('Saved');
       }
     });
 

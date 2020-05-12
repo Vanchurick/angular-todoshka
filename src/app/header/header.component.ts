@@ -21,7 +21,11 @@ export class HeaderComponent implements OnInit {
 
   logout() {
 
-    confirm('Have you saved changes?')
+    const isSaved = confirm('Have you saved changes?');
+
+    if (!isSaved) {
+      return;
+    }
 
     this.userService.logOut();
     this.router.navigate(['login']);
